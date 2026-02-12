@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+  <h1>📝 To-Do List</h1>
+
+  <div class="add-button-container">
+    <a href="/add" class="big-add-btn">➕ Add Todo</a>
+  </div>
+
+  <ul>
+    <% if (todos.length === 0) { %>
+      <li>No tasks yet 🎉</li>
+    <% } else { %>
+      <% todos.forEach(todo => { %>
+        <li>
+          <%= todo.id %> -
+          <%= todo.text %>
+          <form action="/delete" method="post">
+            <input type="hidden" name="id" value="<%= todo.id %>">
+            <button class="delete-btn" type="submit">✖</button>
+          </form>
+        </li>
+      <% }) %>
+    <% } %>
+  </ul>
+
+</body>
+</html>
