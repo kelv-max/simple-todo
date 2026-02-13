@@ -45,17 +45,7 @@ switch (command) {
     break;
   }; 
   case 'update': {
-    const searchIndex = todos.findIndex((todo) => todo.id === todoId);
 
-    const updateTodo = {
-      id: todos.length + 1,
-      text: process.argv.slice(4).join(' ')
-    }
-
-    todos[searchIndex].push(updateTodo);
-    
-    writeData(todos);
-    break;
   };
   case 'delete': {
     const searchId = todos.findIndex((todo) => todo.id === todoId);
