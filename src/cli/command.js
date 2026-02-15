@@ -45,7 +45,16 @@ switch (command) {
     break;
   }; 
   case 'update': {
+    const searchIndex = todos.findIndex((todo) => todo.id === todoId);
 
+    todos[searchIndex].text = process.argv.slice(4).join(' ');
+
+    todos = todos.map((todo, idx) => ({
+      id: idx + 1,
+      text: todo.text
+    }));
+    writeData(todos);
+    break;
   };
   case 'delete': {
     const searchId = todos.findIndex((todo) => todo.id === todoId);
@@ -59,6 +68,11 @@ switch (command) {
     console.log(`Todo number ${searchId} deleted.`)
     break;
   };
+  case 'clear': {
+    todos.splice(0, todos.length);
+    writeData(todos);
+    break;
+  }
   default:
     console.log('error');
 }
